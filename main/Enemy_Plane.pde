@@ -4,27 +4,27 @@ class EnemyPlane implements GameObject {
   private Transform transform;
   private int score = 100;
   private boolean leftOfScreen = false;
-  private int timeBetweenShots = 80;
-  private int currentTime = 75;
+  private int timeBetweenShots = 100;
+  private int currentTime = 90;
   
   ArrayList<PImage> sprites = new ArrayList<PImage>();
   private int frame = 0;
   
-  public EnemyPlane (String name) {
+  public EnemyPlane (String name, PVector pos) {
     this.name = name;
     this.tags = new ArrayList<String>();
     this.tags.add("EnemyPlane");
     this.transform = new Transform(this);
-    this.transform.position = new PVector(width, 20 + random(height/3*2));
+    this.transform.position = pos;
     this.transform.velocity = new PVector(-worldSpeed*2,0);
-    this.transform.size = new PVector(96, 48);
+    this.transform.size = new PVector(90, 42);
     this.sprites = planeSprites;
   }
   
   public void update() {
     this.transform.update();
     for (GameObject collision : this.transform.getCollisions()) {
-      if (collision.containsTag("Explosion") || collision.containsTag("PlayerShot")) {
+      if (collision.containsTag("Explosion")) {
         createExplosion(this.transform.position);
         totalScore += this.getScore();
         destroy(this);
@@ -41,7 +41,7 @@ class EnemyPlane implements GameObject {
     }
     
     if (this.timeBetweenShots <= this.currentTime && this.transform.onScreen()) {
-      createPlaneShot(new PVector(this.transform.position.x, this.transform.position.y, this.transform.position.z), false);
+      createPlaneShot(new PVector(this.transform.position.x, this.transform.position.y, this.transform.position.z), false, 0);
       this.currentTime = 0; 
     } else {
       this.currentTime++;

@@ -14,7 +14,7 @@ class Tree implements GameObject {
     this.tags = new ArrayList<String>();
     this.tags.add("Environment");
     this.transform = new Transform(this);
-    this.transform.position = new PVector(width+64, height-90);
+    this.transform.position = new PVector(width+64, height-93);
     this.transform.velocity = new PVector(-worldSpeed,0);
     this.transform.size = new PVector(96, 48);
     this.sprites = treeSprites;

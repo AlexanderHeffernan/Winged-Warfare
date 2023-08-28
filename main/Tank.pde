@@ -7,6 +7,8 @@ class Tank implements GameObject {
   private int timeBetweenShots = 100;
   private int currentTime = 0;
   
+  private boolean destroyed = false;
+  
   PImage sprite;
   
   public Tank (String name) {
@@ -14,7 +16,7 @@ class Tank implements GameObject {
     this.tags = new ArrayList<String>();
     this.tags.add("Tank");
     this.transform = new Transform(this);
-    this.transform.position = new PVector(width+64, height-66);
+    this.transform.position = new PVector(width+64, height-75);
     this.transform.velocity = new PVector(-worldSpeed,0);
     this.transform.size = new PVector(60, 48);
     sprite = tankSprites.get(0);
@@ -22,10 +24,13 @@ class Tank implements GameObject {
   
   public void update() {
     this.transform.update();
-    for (GameObject collision : this.transform.getCollisions()) {
-      if (collision.containsTag("Explosion")) {
-        totalScore += this.getScore();
-        sprite = tankSprites.get(1);
+    if (!destroyed) {
+      for (GameObject collision : this.transform.getCollisions()) {
+        if (collision.containsTag("Explosion")) {
+          totalScore += this.getScore();
+          sprite = tankSprites.get(1);
+          destroyed = true;
+        }
       }
     }
     

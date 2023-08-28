@@ -16,6 +16,7 @@ class Explosion implements GameObject {
     this.transform.velocity = new PVector(-worldSpeed,0);
     this.transform.size = new PVector(66, 66);
     this.sprites = explosionSprites;
+    explosionSound.play();
   }
   
   public void update() {

@@ -16,8 +16,9 @@ class Background implements GameObject {
     if (startingFrame) { this.transform.position = new PVector(width/2, height/2); }
     else { this.transform.position = new PVector(width+996/2, height/2); }
       
-    this.transform.velocity = new PVector(-worldSpeed/3,0);
+    this.transform.velocity = new PVector(-worldSpeed/10,0);
     this.transform.size = new PVector(1000, 600);
+    this.transform.collidable = false;
     this.sprite = backgroundSprite;
   }
   

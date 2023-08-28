@@ -12,10 +12,11 @@ class Bomb implements GameObject {
     this.tags = new ArrayList<String>();
     this.tags.add("Bomb");
     this.transform = new Transform(this);
-    this.transform.position = new PVector(player.getTransform().position.x, player.getTransform().position.y);
-    this.transform.velocity = new PVector(0,4);
+    this.transform.position = new PVector(player.getTransform().position.x, player.getTransform().position.y+18);
+    this.transform.velocity = new PVector(0,8);
     this.transform.size = new PVector(24, 48);
     this.sprite = bombSprite;
+    bombFallingSound.play();
   }
   
   public void update() {
@@ -28,17 +29,25 @@ class Bomb implements GameObject {
     
     for (GameObject collision : this.transform.getCollisions()) {
       if (!this.hasExploded) {
-        if (collision.containsTag("Environment") || collision.containsTag("Ground") || collision.containsTag("EnemyPlane")) {
-          createExplosion(this.transform.position);
-          this.hasExploded = true;
-          destroy(this);
+        if (collision.containsTag("Environment") || collision.containsTag("EnemyPlane")) {
+          this.explode();
         }
       }
     }
     
+    if (this.transform.position.y >= height - 81)
+      this.explode();
+    
     if (!this.transform.onScreen())
       destroy(this);
   }
+  
+  private void explode() {
+    createExplosion(this.transform.position);
+    this.hasExploded = true;
+    destroy(this);
+  }
+    
   
   public boolean containsTag(String tag) {
     return tags.contains(tag);

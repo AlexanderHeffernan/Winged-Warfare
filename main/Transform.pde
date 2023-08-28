@@ -12,10 +12,11 @@ class Transform {
   public PVector velocity;
   public PVector size;
   
-  public float left = 0f; // Left-most x position of object.
-  public float right = 0f; // Right-most x position of object.
-  public float top = 0f; // Top-most y position of object.
-  public float bottom = 0f; // Bottom-most y position of object.
+  public float left = 0f;
+  public float right = 0f;
+  public float top = 0f;
+  public float bottom = 0f;
+  public boolean collidable;
   
   /**
    * Constructor sets defaults position, velocity and size of (0, 0).
@@ -26,6 +27,7 @@ class Transform {
     this.velocity = new PVector(0, 0);
     this.size = new PVector(0, 0);
     this.gameObject = gameObject;
+    this.collidable = true;
   }
   
   /**
@@ -62,48 +64,53 @@ class Transform {
     for(GameObject gameObject : gameObjects) { // Loop through all objects.
       Transform object = gameObject.getTransform();
       boolean collisionFound = false;
-      if (object != this) { // If object isn't self.
-        if(this.left > object.left && this.right < object.right) { // If vertically aligned with object.
-          if(this.bottom >= object.top && this.bottom < object.bottom) { // Ff collide with top of object.
-            // Top collision with object.
-            collisionFound = true;
-          } 
-          else if(this.top <= object.bottom && this.top > object.top) { // If collide with bottom of object.
-            // Bottom collision with object.
-            collisionFound = true;
+      if (object.collidable) {
+        float distance = sqrt((this.position.x-object.position.x)*(this.position.x-object.position.x)+(this.position.y-object.position.y)*(this.position.y-object.position.y));
+        if (distance <= 192) {
+          if (object != this) { // If object isn't self.
+            if(this.left > object.left && this.right < object.right) { // If vertically aligned with object.
+              if(this.bottom >= object.top && this.bottom < object.bottom) { // Ff collide with top of object.
+                // Top collision with object.
+                collisionFound = true;
+              } 
+              else if(this.top <= object.bottom && this.top > object.top) { // If collide with bottom of object.
+                // Bottom collision with object.
+                collisionFound = true;
+              }
+            }
+            else if(this.top > object.top - this.size.y/2 && this.bottom < object.bottom + this.size.y/2) { // Ff horizontally aligned with object.
+              if(this.right >= object.left && this.right < object.right) { // If collide with left of object.
+                // Left collision with object.
+                collisionFound = true;
+              }
+              else if(this.left <= object.right && this.left > object.left) { // If collide with right of object.
+                // Right collision with object.
+                collisionFound = true;
+              }
+            }
+            else if(this.bottom >= object.top && this.bottom < object.bottom) { // If colliding with top of object.
+              if(this.right >= object.left && this.right < object.right) { // If colliding with left of object.
+                // Top left collision with object.
+                collisionFound = true;
+              }
+              else if(this.left <= object.right && this.left > object.left) { // If colliding with right object.
+                // Top right collision with object.
+                collisionFound = true;
+              }
+            }
+            else if(this.top <= object.bottom && this.top > object.top) { // If colliding with bottom of object.
+              if(this.right >= object.left && this.right < object.right) { // If colliding with left of object.
+                // Bottom left collision with object.
+                collisionFound = true;
+              }
+              else if(this.left <= object.right && this.left > object.left) { // If colliding with right of object.
+                collisionFound = true;
+              }
+            }
           }
-        }
-        else if(this.top > object.top - this.size.y/2 && this.bottom < object.bottom + this.size.y/2) { // Ff horizontally aligned with object.
-          if(this.right >= object.left && this.right < object.right) { // If collide with left of object.
-            // Left collision with object.
-            collisionFound = true;
-          }
-          else if(this.left <= object.right && this.left > object.left) { // If collide with right of object.
-            // Right collision with object.
-            collisionFound = true;
-          }
-        }
-        else if(this.bottom >= object.top && this.bottom < object.bottom) { // If colliding with top of object.
-          if(this.right >= object.left && this.right < object.right) { // If colliding with left of object.
-            // Top left collision with object.
-            collisionFound = true;
-          }
-          else if(this.left <= object.right && this.left > object.left) { // If colliding with right object.
-            // Top right collision with object.
-            collisionFound = true;
-          }
-        }
-        else if(this.top <= object.bottom && this.top > object.top) { // If colliding with bottom of object.
-          if(this.right >= object.left && this.right < object.right) { // If colliding with left of object.
-            // Bottom left collision with object.
-            collisionFound = true;
-          }
-          else if(this.left <= object.right && this.left > object.left) { // If colliding with right of object.
-            collisionFound = true;
-          }
+          if (collisionFound) { collisions.add(gameObject); }
         }
       }
-      if (collisionFound) { collisions.add(gameObject); }
     }
     return collisions;
   }

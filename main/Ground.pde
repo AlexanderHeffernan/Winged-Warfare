@@ -17,7 +17,8 @@ class Ground implements GameObject {
     else { this.transform.position = new PVector(width+1001/2, height-18); }
       
     this.transform.velocity = new PVector(-worldSpeed,0);
-    this.transform.size = new PVector(1056, 96);
+    this.transform.size = new PVector(1056, 102);
+    this.transform.collidable = false;
     sprite = groundSprite;
   }
   
@@ -39,7 +40,7 @@ class Ground implements GameObject {
     }
     
     imageMode(CENTER);
-    image(sprite, this.transform.position.x, this.transform.position.y, 1056, 96);
+    image(sprite, this.transform.position.x, this.transform.position.y, 1056, 102);
     //rect(this.transform.position.x, this.transform.position.y, this.transform.size.x, this.transform.size.y); 
   }
   
