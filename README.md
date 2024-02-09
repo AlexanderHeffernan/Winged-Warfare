@@ -1,7 +1,7 @@
-#Project Description and purpose#
+#Project Description and purpose
 This is my project for CGRA 151. We were tasked with creating a game in Processing. It is a 2D endless game set during World War II where you fly a spitefire over the battlefields, shooting down enemy planes, and bombing enemy tanks and encampments.
 
-#Installation instructions#
+#Installation instructions
 To run this project:
 1. Clone this project
 2. Install Processing
