@@ -1,8 +1,8 @@
 # Project description
 For CGRA 151, I worked on a project involving the creation of a game using Processing. The game was a 2D endless experience set during World War II. Players took on the role of a Spitfire pilot flying over battlefields, engaging in aerial combat to shoot down enemy planes. The game also involved bombing enemy tanks and encampments for a comprehensive and thrilling gaming experience.
 
-![Spitfire shooting an enemy plane](https://alexanderheffernan.github.io/static/media/WingedWarfare3.cc9cef914aa729377b76.png)
-![Spitfire shooting enemy tanks](https://alexanderheffernan.github.io/static/media/WingedWarfare4.c5ebc63df1035aeea537.png)
+| -------------------------------- | ------------------------------ |
+| ![Spitfire shooting an enemy plane](https://alexanderheffernan.github.io/static/media/WingedWarfare3.cc9cef914aa729377b76.png) | ![Spitfire shooting enemy tanks](https://alexanderheffernan.github.io/static/media/WingedWarfare4.c5ebc63df1035aeea537.png) |
 
 
 # Installation instructions
