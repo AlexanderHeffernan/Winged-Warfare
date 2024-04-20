@@ -11,3 +11,6 @@ To run this project:
 3. Open the "ProjectSketch.pde" file
 4. Ensure the "Sound" library by The Processing Foundation is installed
 5. Click the run button
+
+| ![Winged Warfare main menu](https://alexanderheffernan.github.io/static/media/WingedWarfare1.db52de9230295e3e9ff6.png) | ![Spitfire eyeing up a supply crate](https://alexanderheffernan.github.io/static/media/WingedWarfare7.fb822e0d2181535351a1.png) |
+| -------------------------------- | ------------------------------ |
