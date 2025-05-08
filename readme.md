@@ -5,10 +5,16 @@ For CGRA 151, I worked on a project involving the creation of a game using Proce
 | -------------------------------- | ------------------------------ |
 
 # Installation instructions
-To run this project:
+To run this project on macOS (Apple Silicon only):
+
+1. [Download WingedWarfare.app](https://github.com/alexanderheffernan/Winged-Warfare/raw/main/build/WingedWarfare.zip)
+2. Open the downloaded file and follow any macOS prompts to allow the app to run.
+
+# Sketch setup
+To setup this project as a Processing Sketch:
 1. Clone this project
 2. Install Processing
-3. Open the "ProjectSketch.pde" file
+3. Open the "src/WingedWarfare.pde" file
 4. Ensure the "Sound" library by The Processing Foundation is installed
 5. Click the run button
 
