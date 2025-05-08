@@ -7,8 +7,11 @@ For CGRA 151, I worked on a project involving the creation of a game using Proce
 # Installation instructions
 To run this project on macOS (Apple Silicon only):
 
-1. [Download WingedWarfare.app](https://github.com/alexanderheffernan/Winged-Warfare/raw/main/build/WingedWarfare.zip)
-2. Open the downloaded file and follow any macOS prompts to allow the app to run.
+1. [Download WingedWarfare.zip](https://github.com/alexanderheffernan/Winged-Warfare/raw/main/build/WingedWarfare.zip)
+2. Unzip the downloaded file.
+3. Run the following command in terminal to allow the .app file to run:
+   `xattr -d com.apple.quarantine WingedWarfare.app`
+4. Open and play the game!
 
 # Sketch setup
 To setup this project as a Processing Sketch:
